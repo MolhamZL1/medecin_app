@@ -1,5 +1,7 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:rosemary/constants.dart';
+import 'package:rosemary/core/functions/buildOutLinedBorder.dart';
 
 class CustomPasswordTextField extends StatefulWidget {
   const CustomPasswordTextField({super.key, required this.controller});
@@ -16,6 +18,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: kColor,
       validator: (data) {
         if (data!.isEmpty) {
           return "Enter The Password";
@@ -31,24 +34,20 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
               isObsecure = isObsecure == true ? false : true;
               setState(() {});
             },
-            icon: Icon(isObsecure == false
-                ? FontAwesomeIcons.eye
-                : FontAwesomeIcons.eyeSlash)),
+            icon: Icon(
+              isObsecure == false
+                  ? FontAwesomeIcons.eye
+                  : FontAwesomeIcons.eyeSlash,
+              color: kColor,
+            )),
         hintText: "Password",
-        hintStyle: const TextStyle(
-          color: Color.fromARGB(172, 58, 176, 184),
+        hintStyle: TextStyle(
+          color: kColor.withOpacity(.7),
           fontSize: 18,
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0xFF3AAFB8),
-          ),
-        ),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-        ),
+        focusedBorder: buildOutlinedBorder(),
+        enabledBorder: buildOutlinedBorder(),
+        border: buildOutlinedBorder(),
       ),
     );
   }

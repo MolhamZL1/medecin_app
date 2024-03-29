@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rosemary/constants.dart';
+import 'package:rosemary/core/functions/buildOutLinedBorder.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key, required this.controller});
@@ -6,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorColor: kColor,
       validator: (data) {
         if (data!.isEmpty) {
           return "Enter The your name";
@@ -13,22 +16,15 @@ class CustomTextField extends StatelessWidget {
         return null;
       },
       controller: controller,
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         hintText: "User Name",
         hintStyle: TextStyle(
-          color: Color.fromARGB(172, 58, 176, 184),
+          color: kColor.withOpacity(.7),
           fontSize: 18,
         ),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0xFF3AAFB8),
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.white,
-          ),
-        ),
+        focusedBorder: buildOutlinedBorder(),
+        enabledBorder: buildOutlinedBorder(),
+        border: buildOutlinedBorder(),
       ),
     );
   }

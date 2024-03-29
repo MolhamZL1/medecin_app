@@ -9,6 +9,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitial());
   Future<void> fetchSplash() async {
     emit(SplashLoading());
+    await CacheNetwork.cacheInitialization();
     UserInfo.token = await CacheNetwork.getCacheData(key: 'token');
     UserInfo.username = await CacheNetwork.getCacheData(key: 'username');
     await Future.delayed(const Duration(seconds: 2));

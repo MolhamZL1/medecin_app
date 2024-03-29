@@ -13,11 +13,14 @@ class UpSection extends StatelessWidget {
           height: 150,
         ),
         const SizedBox(height: 10),
-        const Text(
-          "Login",
-          style: TextStyle(
-            fontSize: 25,
-            color: Colors.black,
+        const Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            "Login",
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.black,
+            ),
           ),
         ),
         const SizedBox(height: 12),

@@ -6,6 +6,8 @@ class RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RegisterViewBody();
+    return const Scaffold(
+      body: RegisterViewBody(),
+    );
   }
 }

@@ -18,7 +18,7 @@ class QuestionSection extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).pushNamed(Routes.kRegisterView);
+            GoRouter.of(context).push(Routes.kRegisterView);
           },
           child: const Text(
             "Register",
