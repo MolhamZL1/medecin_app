@@ -1,7 +1,7 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:rosemary/constants.dart';
-import 'package:rosemary/core/widgets/MyDrawer.dart';
+import 'package:rosemary/feauters/home/presentation/views/widgets/custom_Drawer.dart';
 import 'package:rosemary/feauters/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:rosemary/feauters/home/presentation/views/widgets/favourite_body.dart';
 import 'package:rosemary/feauters/home/presentation/views/widgets/home_view_body.dart';
@@ -52,7 +52,7 @@ class _HomeViewState extends State<HomeView> {
         selectedIndex: currentIndex,
         onDestinationSelected: (index) => setState(() => currentIndex = index),
       ),
-      // drawer: const CustomDrawer(),
+      drawer: const CustomDrawer(),
       appBar: CustomAppBar(currentIndex: currentIndex),
       body: views[currentIndex],
     );
