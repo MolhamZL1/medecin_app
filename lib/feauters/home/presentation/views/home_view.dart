@@ -23,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
     const FavouritesBody(),
     const NotficationsBody()
   ];
+  final List<String> titles = ["Home", "Orders", "Favourite", "Notfications"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,30 +31,30 @@ class _HomeViewState extends State<HomeView> {
         indicatorColor: kColor.withOpacity(.2),
         height: 70,
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined, size: 30),
-            label: "Home",
-            selectedIcon: Icon(Icons.home, size: 30),
+            icon: const Icon(Icons.home_outlined, size: 30),
+            label: titles[0],
+            selectedIcon: const Icon(Icons.home, size: 30),
           ),
           NavigationDestination(
-              icon: Icon(FontAwesomeIcons.list), label: "Orders"),
+              icon: const Icon(FontAwesomeIcons.list), label: titles[1]),
           NavigationDestination(
-            icon: Icon(Icons.favorite_outline),
-            label: "Favourite",
-            selectedIcon: Icon(Icons.favorite),
+            icon: const Icon(Icons.favorite_outline),
+            label: titles[2],
+            selectedIcon: const Icon(Icons.favorite),
           ),
           NavigationDestination(
-            icon: Icon(Icons.notifications_outlined),
-            label: "Notifications",
-            selectedIcon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications_outlined),
+            label: titles[3],
+            selectedIcon: const Icon(Icons.notifications),
           )
         ],
         selectedIndex: currentIndex,
         onDestinationSelected: (index) => setState(() => currentIndex = index),
       ),
       drawer: const CustomDrawer(),
-      appBar: CustomAppBar(currentIndex: currentIndex),
+      appBar: CustomAppBar(title: titles[currentIndex]),
       body: views[currentIndex],
     );
   }

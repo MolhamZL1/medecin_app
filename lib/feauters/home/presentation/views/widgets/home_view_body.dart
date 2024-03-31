@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rosemary/constants.dart';
 import 'package:rosemary/core/functions/customSnackBar.dart';
+import 'package:rosemary/core/widgets/custom_circle_loading.dart';
 import 'package:rosemary/feauters/home/presentation/view_models/cubits/cubit/categories_cubit.dart';
 import 'package:rosemary/feauters/home/presentation/views/widgets/customCategoryCard.dart';
 
@@ -34,10 +34,7 @@ class HomeViewBody extends StatelessWidget {
               );
             });
       } else {
-        return Center(
-            child: CircularProgressIndicator(
-          color: kColor,
-        ));
+        return const CustomCircleLoading();
       }
     });
   }

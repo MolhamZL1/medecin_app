@@ -29,7 +29,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   awesome_icons: ^1.1.0
-  cached_network_image: ^3.3.1
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.4.2+1

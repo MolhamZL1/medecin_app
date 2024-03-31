@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rosemary/constants.dart';
+import 'package:rosemary/core/utils/go_route.dart';
 
 class CustomCategoryCard extends StatelessWidget {
   const CustomCategoryCard({super.key, required this.category});
@@ -8,16 +11,12 @@ class CustomCategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        // Navigator.pushNamed(
-        //   context,
-        //   ProductsPage.id,
-        //   arguments: category,
-        // );
+        GoRouter.of(context).push(Routes.kMedecinesView, extra: category);
       },
       child: Card(
           shadowColor: Colors.grey.withOpacity(.9),
           elevation: 20,
-          color: const Color(0xFF3AAFB8),
+          color: kColor,
           child: Column(
             children: [
               AspectRatio(
@@ -32,12 +31,15 @@ class CustomCategoryCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 70,
-              ),
-              Text(
-                category,
-                style: const TextStyle(color: Colors.white, fontSize: 16),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.aspectRatio * 20),
+                child: Text(
+                  category,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: MediaQuery.of(context).size.aspectRatio * 33),
+                ),
               )
             ],
           )),
