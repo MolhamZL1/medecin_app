@@ -7,6 +7,8 @@ import 'package:rosemary/feauters/auth/presentation/view_models/loginCubit/login
 import 'package:rosemary/feauters/auth/presentation/view_models/registerCubit/register_cubit.dart';
 import 'package:rosemary/feauters/auth/presentation/views/login_view.dart';
 import 'package:rosemary/feauters/auth/presentation/views/register_view.dart';
+import 'package:rosemary/feauters/home/data/repos/home_repo_imp.dart';
+import 'package:rosemary/feauters/home/presentation/view_models/cubits/cubit/categories_cubit.dart';
 import 'package:rosemary/feauters/home/presentation/views/home_view.dart';
 import 'package:rosemary/feauters/splash/presentation/view_models/cubit/splash_cubit.dart';
 import 'package:rosemary/feauters/splash/presentation/views/splash_view.dart';
@@ -41,7 +43,11 @@ abstract class Routes {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => const HomeView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              CategoriesCubit(getIt.get<HomeRepoImp>())..getCategories(),
+          child: const HomeView(),
+        ),
       ),
     ],
   );
