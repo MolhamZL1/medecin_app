@@ -12,7 +12,7 @@ final class CategoriesInitial extends CategoriesState {}
 final class CategoriesLoading extends CategoriesState {}
 
 final class CategoriesSuccess extends CategoriesState {
-  final List<String> categories;
+  final List<dynamic> categories;
 
   const CategoriesSuccess({required this.categories});
 }

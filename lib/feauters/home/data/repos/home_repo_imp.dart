@@ -7,11 +7,11 @@ import 'package:rosemary/feauters/home/data/repos/home_repo.dart';
 class HomeRepoImp implements HomeRepo {
   final ApiService apiservice;
 
-  HomeRepoImp({required this.apiservice});
+  HomeRepoImp(this.apiservice);
   @override
-  Future<Either<ServerFailure, List<String>>> getCategories() async {
+  Future<Either<ServerFailure, List<dynamic>>> getCategories() async {
     try {
-      List<String> data = await apiservice.get(endPoint: "categouries");
+      List<dynamic> data = await apiservice.get(endPoint: "categories");
       return right(data);
     } catch (e) {
       if (e is DioException) {
