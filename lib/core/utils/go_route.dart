@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rosemary/core/models/medicine_model.dart';
 import 'package:rosemary/core/utils/service_locator.dart';
 import 'package:rosemary/feauters/auth/data/repos/login_repo/login_repo_imp.dart';
 import 'package:rosemary/feauters/auth/data/repos/register_repo/register_repo_imp.dart';
@@ -10,6 +11,7 @@ import 'package:rosemary/feauters/auth/presentation/views/register_view.dart';
 import 'package:rosemary/feauters/home/data/repos/home_repo_imp.dart';
 import 'package:rosemary/feauters/home/presentation/view_models/cubits/cubit/categories_cubit.dart';
 import 'package:rosemary/feauters/home/presentation/views/home_view.dart';
+import 'package:rosemary/feauters/medicine_details/presentation/views/medecine_detailes_view.dart';
 import 'package:rosemary/feauters/medicines/data/repos/medecines_repo_imp.dart';
 import 'package:rosemary/feauters/medicines/presentation/view_models/cubits/cubit/medecines_by_category_cubit.dart';
 import 'package:rosemary/feauters/medicines/presentation/views/medecines_view.dart';
@@ -21,6 +23,7 @@ abstract class Routes {
   static const kHomeView = '/homeView';
   static const kRegisterView = '/registerView';
   static const kMedecinesView = '/MedecinesView';
+  static const kMedecinesDetailesView = '/MedecinesDetailesView';
 
   static final router = GoRouter(
     routes: [
@@ -62,6 +65,12 @@ abstract class Routes {
           child: MedecinesView(
             category: state.extra as String,
           ),
+        ),
+      ),
+      GoRoute(
+        path: kMedecinesDetailesView,
+        builder: (context, state) => MedecineDetailsView(
+          medecine: state.extra as MedicineModel,
         ),
       ),
     ],

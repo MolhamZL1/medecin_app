@@ -4,7 +4,7 @@ import 'package:rosemary/core/functions/customSnackBar.dart';
 import 'package:rosemary/core/models/medicine_model.dart';
 import 'package:rosemary/core/widgets/custom_circle_loading.dart';
 import 'package:rosemary/feauters/medicines/presentation/view_models/cubits/cubit/medecines_by_category_cubit.dart';
-import 'package:rosemary/feauters/medicines/presentation/views/widgets/customCard.dart';
+import 'package:rosemary/feauters/medicines/presentation/views/widgets/custom_medecine_card.dart';
 
 class MedecinesViewBody extends StatelessWidget {
   const MedecinesViewBody({super.key});
@@ -31,7 +31,7 @@ class MedecinesViewBody extends StatelessWidget {
                   crossAxisSpacing: 15,
                   mainAxisSpacing: 20),
               itemBuilder: (context, index) {
-                return CustomCard(
+                return CustomMedecineCard(
                   medicine: medicines[index],
                   //  isfavourite: false,
                 );

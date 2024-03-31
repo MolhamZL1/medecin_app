@@ -31,6 +31,7 @@ dependencies:
   awesome_icons: ^1.1.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
+  date_formatter: ^0.0.4
   dio: ^5.4.2+1
   equatable: ^2.0.5
   flutter:

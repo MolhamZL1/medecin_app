@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rosemary/constants.dart';
 import 'package:rosemary/core/models/medicine_model.dart';
+import 'package:rosemary/core/utils/go_route.dart';
+import 'package:rosemary/feauters/medicines/presentation/views/widgets/customCartTextField.dart';
 
-class CustomCard extends StatelessWidget {
-  const CustomCard({
+class CustomMedecineCard extends StatelessWidget {
+  const CustomMedecineCard({
     super.key,
     required this.medicine,
     //required this.isfavourite
@@ -14,8 +17,8 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.pushNamed(context, ProductPage.id,
-        //     arguments: widget.medicine);
+        GoRouter.of(context)
+            .push(Routes.kMedecinesDetailesView, extra: medicine);
       },
       child: Card(
         shadowColor: Colors.grey.withOpacity(.9),
@@ -61,23 +64,6 @@ class CustomCard extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class CustomTextCard extends StatelessWidget {
-  const CustomTextCard({super.key, required this.text});
-
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.white),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
       ),
     );
   }
