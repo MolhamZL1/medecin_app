@@ -17,7 +17,7 @@ class AddToCartSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CustomChooseQuantityWidget(medecine: medecine),
-        const CustomElevatedButton()
+        CustomElevatedButton(medicineModel: medecine)
       ],
     );
   }

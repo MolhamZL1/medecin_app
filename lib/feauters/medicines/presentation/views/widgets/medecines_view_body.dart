@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rosemary/core/functions/customSnackBar.dart';
 import 'package:rosemary/core/models/medicine_model.dart';
 import 'package:rosemary/core/widgets/custom_circle_loading.dart';
-import 'package:rosemary/feauters/medicines/presentation/view_models/cubits/cubit/medecines_by_category_cubit.dart';
+import 'package:rosemary/feauters/medicines/presentation/view_models/medecinesByCategoryCubit/medecines_by_category_cubit.dart';
 import 'package:rosemary/feauters/medicines/presentation/views/widgets/custom_medecine_card.dart';
 
 class MedecinesViewBody extends StatelessWidget {

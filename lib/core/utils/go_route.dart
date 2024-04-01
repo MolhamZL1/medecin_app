@@ -9,13 +9,15 @@ import 'package:rosemary/feauters/auth/presentation/view_models/registerCubit/re
 import 'package:rosemary/feauters/auth/presentation/views/login_view.dart';
 import 'package:rosemary/feauters/auth/presentation/views/register_view.dart';
 import 'package:rosemary/feauters/home/data/repos/home_repo_imp.dart';
-import 'package:rosemary/feauters/home/presentation/view_models/cubits/cubit/categories_cubit.dart';
+import 'package:rosemary/feauters/home/presentation/view_models/categoriesCubit/categories_cubit.dart';
 import 'package:rosemary/feauters/home/presentation/views/home_view.dart';
+import 'package:rosemary/feauters/medicine_details/data/repos/medecine_details_repo_imp.dart';
+import 'package:rosemary/feauters/medicine_details/presentation/view_models/AddToCartCubit/add_to_cart_cubit.dart';
 import 'package:rosemary/feauters/medicine_details/presentation/views/medecine_detailes_view.dart';
 import 'package:rosemary/feauters/medicines/data/repos/medecines_repo_imp.dart';
-import 'package:rosemary/feauters/medicines/presentation/view_models/cubits/cubit/medecines_by_category_cubit.dart';
+import 'package:rosemary/feauters/medicines/presentation/view_models/medecinesByCategoryCubit/medecines_by_category_cubit.dart';
 import 'package:rosemary/feauters/medicines/presentation/views/medecines_view.dart';
-import 'package:rosemary/feauters/splash/presentation/view_models/cubit/splash_cubit.dart';
+import 'package:rosemary/feauters/splash/presentation/view_models/SplashCubit/splash_cubit.dart';
 import 'package:rosemary/feauters/splash/presentation/views/splash_view.dart';
 
 abstract class Routes {
@@ -69,8 +71,12 @@ abstract class Routes {
       ),
       GoRoute(
         path: kMedecinesDetailesView,
-        builder: (context, state) => MedecineDetailsView(
-          medecine: state.extra as MedicineModel,
+        builder: (context, state) => BlocProvider(
+          create: (context) =>
+              AddToCartCubit(getIt.get<MedicineDetailsRepoImp>()),
+          child: MedecineDetailsView(
+            medecine: state.extra as MedicineModel,
+          ),
         ),
       ),
     ],
