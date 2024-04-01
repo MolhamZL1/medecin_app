@@ -11,6 +11,8 @@ class SearchCubit extends Cubit<SearchState> {
   Future<void> search({required String searchingInput}) async {
     emit(SearchLoading());
     var result = await searchRepo.search(searchingInput: searchingInput);
-    result.fold((failure) => emit(SearchFailure(errMessage: failure.errMessage)), (medecines) => emit(SearchSuccess(medicines: medecines)))
+    result.fold(
+        (failure) => emit(SearchFailure(errMessage: failure.errMessage)),
+        (medecines) => emit(SearchSuccess(medicines: medecines)));
   }
 }
