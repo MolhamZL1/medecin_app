@@ -17,6 +17,9 @@ import 'package:rosemary/feauters/medicine_details/presentation/views/medecine_d
 import 'package:rosemary/feauters/medicines/data/repos/medecines_repo_imp.dart';
 import 'package:rosemary/feauters/medicines/presentation/view_models/medecinesByCategoryCubit/medecines_by_category_cubit.dart';
 import 'package:rosemary/feauters/medicines/presentation/views/medecines_view.dart';
+import 'package:rosemary/feauters/search/data/repos/search_repo_imp.dart';
+import 'package:rosemary/feauters/search/presentation/view_models/searchCubit/search_cubit.dart';
+import 'package:rosemary/feauters/search/presentation/views/search_view.dart';
 import 'package:rosemary/feauters/splash/presentation/view_models/SplashCubit/splash_cubit.dart';
 import 'package:rosemary/feauters/splash/presentation/views/splash_view.dart';
 
@@ -26,6 +29,7 @@ abstract class Routes {
   static const kRegisterView = '/registerView';
   static const kMedecinesView = '/MedecinesView';
   static const kMedecinesDetailesView = '/MedecinesDetailesView';
+  static const kSearchView = '/SearchView';
 
   static final router = GoRouter(
     routes: [
@@ -56,6 +60,13 @@ abstract class Routes {
           create: (context) =>
               CategoriesCubit(getIt.get<HomeRepoImp>())..getCategories(),
           child: const HomeView(),
+        ),
+      ),
+      GoRoute(
+        path: kSearchView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => SearchCubit(getIt.get<SearchRepoImp>()),
+          child: const SearchView(),
         ),
       ),
       GoRoute(

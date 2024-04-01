@@ -11,10 +11,16 @@ final class SearchInitial extends SearchState {}
 
 final class SearchLoading extends SearchState {}
 
-final class SearchSuccess extends SearchState {
+final class SearchMedecinesSuccess extends SearchState {
   final List<MedicineModel> medicines;
 
-  const SearchSuccess({required this.medicines});
+  const SearchMedecinesSuccess({required this.medicines});
+}
+
+final class SearchCategoriesSuccess extends SearchState {
+  final List<dynamic> categories;
+
+  const SearchCategoriesSuccess({required this.categories});
 }
 
 final class SearchFailure extends SearchState {

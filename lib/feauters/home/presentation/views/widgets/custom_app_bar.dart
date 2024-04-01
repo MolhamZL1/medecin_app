@@ -1,6 +1,8 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:rosemary/constants.dart';
+import 'package:rosemary/core/utils/go_route.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.title});
@@ -15,6 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             onPressed: () {
+              GoRouter.of(context).push(Routes.kSearchView);
               // Navigator.pushNamed(context, SearchPage.id);
             },
             icon: const Icon(Icons.search)),

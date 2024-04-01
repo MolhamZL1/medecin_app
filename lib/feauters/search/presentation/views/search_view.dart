@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rosemary/feauters/search/presentation/views/widgets/custom_search_appBar.dart';
 import 'package:rosemary/feauters/search/presentation/views/widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
@@ -7,6 +8,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      appBar: CustomSearchAppBar(),
       body: SearchViewBody(),
     );
   }

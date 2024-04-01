@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rosemary/core/functions/customSnackBar.dart';
 import 'package:rosemary/core/widgets/custom_circle_loading.dart';
 import 'package:rosemary/feauters/home/presentation/view_models/categoriesCubit/categories_cubit.dart';
-import 'package:rosemary/feauters/home/presentation/views/widgets/customCategoryCard.dart';
+import 'package:rosemary/feauters/home/presentation/views/widgets/customCategoriesGridViewBuilder.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -19,20 +19,10 @@ class HomeViewBody extends StatelessWidget {
     }, builder: (context, state) {
       if (state is CategoriesSuccess) {
         List<dynamic> categories = state.categories;
-        return GridView.builder(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            itemCount: categories.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.2,
-                crossAxisSpacing: 15,
-                mainAxisSpacing: 20),
-            itemBuilder: (context, index) {
-              return CustomCategoryCard(
-                category: categories[index],
-              );
-            });
+        if (categories.isEmpty) {
+          return Image.asset("assets/images/Empty.png");
+        }
+        return CustomCategoriesGridViewBuilder(categories: categories);
       } else {
         return const CustomCircleLoading();
       }
