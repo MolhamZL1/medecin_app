@@ -5,14 +5,15 @@ class CustomCategoriesGridViewBuilder extends StatelessWidget {
   const CustomCategoriesGridViewBuilder({
     super.key,
     required this.categories,
+    required this.physics,
   });
 
   final List categories;
-
+  final ScrollPhysics physics;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        physics: const BouncingScrollPhysics(),
+        physics: physics,
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         itemCount: categories.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

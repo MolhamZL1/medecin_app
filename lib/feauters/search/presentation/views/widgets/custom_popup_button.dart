@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rosemary/feauters/search/presentation/view_models/searchCubit/search_cubit.dart';
 
-class CustomDropDownButton extends StatefulWidget {
-  const CustomDropDownButton({super.key});
+class CustomPopUpButton extends StatefulWidget {
+  const CustomPopUpButton({super.key});
 
   @override
-  State<CustomDropDownButton> createState() => _CustomDropDownButtonState();
+  State<CustomPopUpButton> createState() => _CustomPopUpButtonState();
 }
 
-class _CustomDropDownButtonState extends State<CustomDropDownButton> {
+class _CustomPopUpButtonState extends State<CustomPopUpButton> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(

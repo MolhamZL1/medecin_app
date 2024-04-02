@@ -5,9 +5,7 @@ import 'package:rosemary/core/functions/buildOutLinedBorder.dart';
 import 'package:rosemary/feauters/search/presentation/view_models/searchCubit/search_cubit.dart';
 
 class CustomSearchTextField extends StatefulWidget {
-  const CustomSearchTextField({
-    super.key,
-  });
+  const CustomSearchTextField({super.key});
 
   @override
   State<CustomSearchTextField> createState() => _CustomSearchTextFieldState();

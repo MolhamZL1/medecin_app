@@ -27,15 +27,21 @@ class CustomsearchGridViewBuilder extends StatelessWidget {
           if (medicines.isEmpty) {
             return Image.asset("assets/images/Empty.png");
           }
-          return CustomMedecinesGridViewBuilder(medicines: medicines);
+          return CustomMedecinesGridViewBuilder(
+            medicines: medicines,
+            physics: const NeverScrollableScrollPhysics(),
+          );
         } else if (state is SearchCategoriesSuccess) {
           List<dynamic> categories = state.categories;
           if (categories.isEmpty) {
             return Image.asset("assets/images/Empty.png");
           }
-          return CustomCategoriesGridViewBuilder(categories: categories);
+          return CustomCategoriesGridViewBuilder(
+            categories: categories,
+            physics: const NeverScrollableScrollPhysics(),
+          );
         } else {
-          return Image.asset("assets/images/search.png");
+          return Center(child: Image.asset("assets/images/search.png"));
         }
       },
     );

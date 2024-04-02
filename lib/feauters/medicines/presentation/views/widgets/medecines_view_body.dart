@@ -21,7 +21,13 @@ class MedecinesViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state is MedecinesByCategorySuccess) {
           List<MedicineModel> medicines = state.medecines;
-          return CustomMedecinesGridViewBuilder(medicines: medicines);
+          if (medicines.isEmpty) {
+            return Center(child: Image.asset("assets/images/Empty.png"));
+          }
+          return CustomMedecinesGridViewBuilder(
+            medicines: medicines,
+            physics: const BouncingScrollPhysics(),
+          );
         } else {
           return const CustomCircleLoading();
         }

@@ -6,14 +6,16 @@ class CustomMedecinesGridViewBuilder extends StatelessWidget {
   const CustomMedecinesGridViewBuilder({
     super.key,
     required this.medicines,
+    required this.physics,
   });
 
   final List<MedicineModel> medicines;
-
+  final ScrollPhysics physics;
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        physics: physics,
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         itemCount: medicines.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

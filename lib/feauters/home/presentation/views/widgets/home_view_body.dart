@@ -19,10 +19,10 @@ class HomeViewBody extends StatelessWidget {
     }, builder: (context, state) {
       if (state is CategoriesSuccess) {
         List<dynamic> categories = state.categories;
-        if (categories.isEmpty) {
-          return Image.asset("assets/images/Empty.png");
-        }
-        return CustomCategoriesGridViewBuilder(categories: categories);
+        return CustomCategoriesGridViewBuilder(
+          categories: categories,
+          physics: const BouncingScrollPhysics(),
+        );
       } else {
         return const CustomCircleLoading();
       }

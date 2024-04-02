@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rosemary/feauters/search/presentation/views/widgets/custom_drop_down_button.dart';
+import 'package:rosemary/feauters/search/presentation/views/widgets/custom_popup_button.dart';
 import 'package:rosemary/feauters/search/presentation/views/widgets/custom_search_grid_view_builder.dart';
 import 'package:rosemary/feauters/search/presentation/views/widgets/custom_search_text_field.dart';
 
@@ -8,15 +8,17 @@ class SearchViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
-      children: [
+    return ListView(
+      padding: EdgeInsets.zero,
+      physics: const BouncingScrollPhysics(),
+      children: const [
         Row(
           children: [
-            CustomDropDownButton(),
+            CustomPopUpButton(),
             CustomSearchTextField(),
           ],
         ),
-        Expanded(child: CustomsearchGridViewBuilder())
+        CustomsearchGridViewBuilder()
       ],
     );
   }
