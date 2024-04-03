@@ -24,25 +24,27 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<RegisterCubit, RegisterState>(
-      listener: (context, state) {
-        if (state is RegisterLoading) {
-          customshowLoadingCircle(context);
-        } else if (state is RegisterSuccess) {
-          GoRouter.of(context).pop();
-          GoRouter.of(context).pushReplacement(Routes.kHomeView);
-        } else if (state is RegisterFailure) {
-          GoRouter.of(context).pop();
-          customshowSnackBar(
-            context,
-            massege: state.errMessage,
-            color: Colors.redAccent,
-          );
-        }
-      },
-      child: Padding(
+    return BlocConsumer<RegisterCubit, RegisterState>(
+        listener: (context, state) {
+      if (state is RegisterSuccess) {
+        GoRouter.of(context).pushReplacement(Routes.kHomeView);
+      } else if (state is RegisterFailure) {
+        isLoading = false;
+        customshowSnackBar(
+          context,
+          massege: state.errMessage,
+          color: Colors.redAccent,
+        );
+      }
+    }, builder: (context, state) {
+      if (state is RegisterLoading) {
+        isLoading = true;
+      }
+      return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Form(
           key: formKey,
@@ -56,6 +58,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
               CustomPasswordTextField(controller: passwordController),
               const SizedBox(height: 20),
               CustomButton(
+                  isLoading: isLoading,
                   text: "Register",
                   onTap: () {
                     if (formKey.currentState!.validate()) {
@@ -70,7 +73,7 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

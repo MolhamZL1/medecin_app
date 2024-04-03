@@ -11,7 +11,7 @@ class CustomDrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return DrawerHeader(
         margin: const EdgeInsets.only(bottom: 0),
-        decoration: backgroundColor(),
+        decoration: BoxDecoration(gradient: backgroundColor()),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

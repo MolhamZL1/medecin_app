@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rosemary/core/functions/customLoadingCircle.dart';
 import 'package:rosemary/core/functions/customSnackBar.dart';
 import 'package:rosemary/core/utils/go_route.dart';
 import 'package:rosemary/feauters/auth/presentation/view_models/loginCubit/login_cubit.dart';
@@ -22,25 +21,26 @@ class _LoginViewBodyState extends State<LoginViewBody> {
   TextEditingController textController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginCubit, LoginState>(
-      listener: (context, state) {
-        if (state is LoginLoading) {
-          customshowLoadingCircle(context);
-        } else if (state is LoginSuccess) {
-          GoRouter.of(context).pop();
-          GoRouter.of(context).pushReplacement(Routes.kHomeView);
-        } else if (state is LoginFailure) {
-          GoRouter.of(context).pop();
-          customshowSnackBar(
-            context,
-            massege: state.errMessage,
-            color: Colors.redAccent,
-          );
-        }
-      },
-      child: Padding(
+    return BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
+      if (state is LoginSuccess) {
+        GoRouter.of(context).pushReplacement(Routes.kHomeView);
+      } else if (state is LoginFailure) {
+        isLoading = false;
+        customshowSnackBar(
+          context,
+          massege: state.errMessage,
+          color: Colors.redAccent,
+        );
+      }
+    }, builder: (context, state) {
+      if (state is LoginLoading) {
+        isLoading = true;
+      }
+      return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Form(
           key: formKey,
@@ -52,6 +52,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               CustomPasswordTextField(controller: passwordController),
               const SizedBox(height: 20),
               CustomButton(
+                isLoading: isLoading,
                 text: "Login",
                 onTap: () {
                   if (formKey.currentState!.validate()) {
@@ -66,7 +67,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

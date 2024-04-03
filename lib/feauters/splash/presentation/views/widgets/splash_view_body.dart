@@ -20,7 +20,7 @@ class SplashViewBody extends StatelessWidget {
         }
       },
       child: Container(
-        decoration: backgroundColor(),
+        decoration: BoxDecoration(gradient: backgroundColor()),
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

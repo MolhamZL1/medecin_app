@@ -12,19 +12,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title, style: const TextStyle(color: Colors.white)),
-      flexibleSpace: Container(decoration: backgroundColor()),
+      flexibleSpace:
+          Container(decoration: BoxDecoration(gradient: backgroundColor())),
       actions: [
         IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             onPressed: () {
               GoRouter.of(context).push(Routes.kSearchView);
-              // Navigator.pushNamed(context, SearchPage.id);
             },
             icon: const Icon(Icons.search)),
         IconButton(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             onPressed: () {
-              //     Navigator.pushNamed(context, CartPage.id);
+              GoRouter.of(context).push(Routes.kCartView);
             },
             icon: const Icon(FontAwesomeIcons.cartPlus))
       ],

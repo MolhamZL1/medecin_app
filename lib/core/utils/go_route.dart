@@ -8,6 +8,9 @@ import 'package:rosemary/feauters/auth/presentation/view_models/loginCubit/login
 import 'package:rosemary/feauters/auth/presentation/view_models/registerCubit/register_cubit.dart';
 import 'package:rosemary/feauters/auth/presentation/views/login_view.dart';
 import 'package:rosemary/feauters/auth/presentation/views/register_view.dart';
+import 'package:rosemary/feauters/cart/data/repos/cart_repo_imp.dart';
+import 'package:rosemary/feauters/cart/presentation/view_models/Cart_cubit/cart_cubit.dart';
+import 'package:rosemary/feauters/cart/presentation/views/cart_view.dart';
 import 'package:rosemary/feauters/home/data/repos/home_repo_imp.dart';
 import 'package:rosemary/feauters/home/presentation/view_models/categoriesCubit/categories_cubit.dart';
 import 'package:rosemary/feauters/home/presentation/views/home_view.dart';
@@ -30,6 +33,7 @@ abstract class Routes {
   static const kMedecinesView = '/MedecinesView';
   static const kMedecinesDetailesView = '/MedecinesDetailesView';
   static const kSearchView = '/SearchView';
+  static const kCartView = '/CartView';
 
   static final router = GoRouter(
     routes: [
@@ -67,6 +71,13 @@ abstract class Routes {
         builder: (context, state) => BlocProvider(
           create: (context) => SearchCubit(getIt.get<SearchRepoImp>()),
           child: const SearchView(),
+        ),
+      ),
+      GoRoute(
+        path: kCartView,
+        builder: (context, state) => BlocProvider(
+          create: (context) => CartCubit(getIt.get<CartRepoImp>())..fetchCart(),
+          child: const CartView(),
         ),
       ),
       GoRoute(
