@@ -40,31 +40,34 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       if (state is LoginLoading) {
         isLoading = true;
       }
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Form(
-          key: formKey,
-          child: ListView(
-            children: [
-              const UpSection(),
-              CustomNumericTextField(controller: textController),
-              const SizedBox(height: 12),
-              CustomPasswordTextField(controller: passwordController),
-              const SizedBox(height: 20),
-              CustomButton(
-                isLoading: isLoading,
-                text: "Login",
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    BlocProvider.of<LoginCubit>(context).fetchLogin(
-                        phoneNumber: textController.text,
-                        password: passwordController.text);
-                  }
-                },
-              ),
-              const SizedBox(height: 12),
-              const QuestionSection(),
-            ],
+      return AbsorbPointer(
+        absorbing: isLoading,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Form(
+            key: formKey,
+            child: ListView(
+              children: [
+                const UpSection(),
+                CustomNumericTextField(controller: textController),
+                const SizedBox(height: 12),
+                CustomPasswordTextField(controller: passwordController),
+                const SizedBox(height: 20),
+                CustomButton(
+                  isLoading: isLoading,
+                  text: "Login",
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      BlocProvider.of<LoginCubit>(context).fetchLogin(
+                          phoneNumber: textController.text,
+                          password: passwordController.text);
+                    }
+                  },
+                ),
+                const SizedBox(height: 12),
+                const QuestionSection(),
+              ],
+            ),
           ),
         ),
       );

@@ -31,7 +31,7 @@ class CartRepoImp implements CartRepo {
   Future<Either<Failure, Map<String, dynamic>>> buyCart() async {
     try {
       var data = await apiService.post(
-          endPoint: "addOrder",
+          endPoint: "addorder",
           body: {"token": UserInfo.token, "username": UserInfo.username});
       return right(data);
     } catch (e) {

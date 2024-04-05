@@ -9,6 +9,7 @@ import 'package:rosemary/feauters/auth/presentation/view_models/registerCubit/re
 import 'package:rosemary/feauters/auth/presentation/views/login_view.dart';
 import 'package:rosemary/feauters/auth/presentation/views/register_view.dart';
 import 'package:rosemary/feauters/cart/data/repos/cart_repo_imp.dart';
+import 'package:rosemary/feauters/cart/presentation/view_models/Buy_Cart/buy_cart_cubit.dart';
 import 'package:rosemary/feauters/cart/presentation/view_models/Cart_cubit/cart_cubit.dart';
 import 'package:rosemary/feauters/cart/presentation/views/cart_view.dart';
 import 'package:rosemary/feauters/home/data/repos/home_repo_imp.dart';
@@ -75,10 +76,13 @@ abstract class Routes {
       ),
       GoRoute(
         path: kCartView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => CartCubit(getIt.get<CartRepoImp>())..fetchCart(),
-          child: const CartView(),
-        ),
+        builder: (context, state) => MultiBlocProvider(providers: [
+          BlocProvider(
+              create: (context) =>
+                  CartCubit(getIt.get<CartRepoImp>())..fetchCart()),
+          BlocProvider(
+              create: (context) => BuyCartCubit(getIt.get<CartRepoImp>())),
+        ], child: const CartView()),
       ),
       GoRoute(
         path: kMedecinesView,

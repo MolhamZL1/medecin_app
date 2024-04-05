@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rosemary/core/functions/customLoadingCircle.dart';
 import 'package:rosemary/core/functions/customSnackBar.dart';
 import 'package:rosemary/core/utils/go_route.dart';
 import 'package:rosemary/feauters/auth/presentation/view_models/registerCubit/register_cubit.dart';
@@ -44,33 +43,36 @@ class _RegisterViewBodyState extends State<RegisterViewBody> {
       if (state is RegisterLoading) {
         isLoading = true;
       }
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Form(
-          key: formKey,
-          child: ListView(
-            children: [
-              const UpRegisterSection(),
-              CustomTextField(controller: userNameController),
-              const SizedBox(height: 12),
-              CustomNumericTextField(controller: phoneNumberController),
-              const SizedBox(height: 12),
-              CustomPasswordTextField(controller: passwordController),
-              const SizedBox(height: 20),
-              CustomButton(
-                  isLoading: isLoading,
-                  text: "Register",
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      BlocProvider.of<RegisterCubit>(context).fetchRegister(
-                          userName: userNameController.text,
-                          phoneNumber: phoneNumberController.text,
-                          password: passwordController.text);
-                    }
-                  }),
-              const SizedBox(height: 12),
-              const QuistionLoginSection(),
-            ],
+      return AbsorbPointer(
+        absorbing: isLoading,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Form(
+            key: formKey,
+            child: ListView(
+              children: [
+                const UpRegisterSection(),
+                CustomTextField(controller: userNameController),
+                const SizedBox(height: 12),
+                CustomNumericTextField(controller: phoneNumberController),
+                const SizedBox(height: 12),
+                CustomPasswordTextField(controller: passwordController),
+                const SizedBox(height: 20),
+                CustomButton(
+                    isLoading: isLoading,
+                    text: "Register",
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<RegisterCubit>(context).fetchRegister(
+                            userName: userNameController.text,
+                            phoneNumber: phoneNumberController.text,
+                            password: passwordController.text);
+                      }
+                    }),
+                const SizedBox(height: 12),
+                const QuistionLoginSection(),
+              ],
+            ),
           ),
         ),
       );

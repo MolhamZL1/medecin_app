@@ -6,6 +6,8 @@ import 'package:rosemary/feauters/cart/presentation/view_models/Cart_cubit/cart_
 import 'package:rosemary/feauters/cart/presentation/views/widgets/customBuyCartButton.dart';
 import 'package:rosemary/feauters/medicines/presentation/views/widgets/customMedecinesGridViewBuilder.dart';
 
+import 'CustomcartGridViewBuilder.dart';
+
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
 
@@ -27,7 +29,7 @@ class CartViewBody extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 100),
-                      child: CustomMedecinesGridViewBuilder(
+                      child: CustomCartGridViewBuilder(
                           medicines: state.medecines,
                           physics: const BouncingScrollPhysics()),
                     ),
