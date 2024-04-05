@@ -33,12 +33,12 @@ class CustomCategoryCard extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.aspectRatio * 20),
+                    vertical: MediaQuery.of(context).size.width / 35),
                 child: Text(
                   category,
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: MediaQuery.of(context).size.aspectRatio * 33),
+                      fontSize: MediaQuery.of(context).size.width / 25),
                 ),
               )
             ],
