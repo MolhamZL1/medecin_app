@@ -7,6 +7,7 @@ import 'package:rosemary/feauters/cart/data/repos/cart_repo_imp.dart';
 import 'package:rosemary/feauters/home/data/repos/home_repo_imp.dart';
 import 'package:rosemary/feauters/medicine_details/data/repos/medecine_details_repo_imp.dart';
 import 'package:rosemary/feauters/medicines/data/repos/medecines_repo_imp.dart';
+import 'package:rosemary/feauters/orders/data/repo/orders_repo_imp.dart';
 import 'package:rosemary/feauters/search/data/repos/search_repo_imp.dart';
 
 final getIt = GetIt.instance;
@@ -33,6 +34,9 @@ void setupServiceLocator() {
     getIt.get<ApiService>(),
   ));
   getIt.registerSingleton<CartRepoImp>(CartRepoImp(
+    getIt.get<ApiService>(),
+  ));
+  getIt.registerSingleton<OrdersRepoImp>(OrdersRepoImp(
     getIt.get<ApiService>(),
   ));
 }

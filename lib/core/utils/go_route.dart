@@ -21,6 +21,8 @@ import 'package:rosemary/feauters/medicine_details/presentation/views/medecine_d
 import 'package:rosemary/feauters/medicines/data/repos/medecines_repo_imp.dart';
 import 'package:rosemary/feauters/medicines/presentation/view_models/medecinesByCategoryCubit/medecines_by_category_cubit.dart';
 import 'package:rosemary/feauters/medicines/presentation/views/medecines_view.dart';
+import 'package:rosemary/feauters/orders/data/repo/orders_repo_imp.dart';
+import 'package:rosemary/feauters/orders/presentation/view_models/ordersCubit/orders_cubit.dart';
 import 'package:rosemary/feauters/search/data/repos/search_repo_imp.dart';
 import 'package:rosemary/feauters/search/presentation/view_models/searchCubit/search_cubit.dart';
 import 'package:rosemary/feauters/search/presentation/views/search_view.dart';
@@ -61,9 +63,17 @@ abstract class Routes {
       ),
       GoRoute(
         path: kHomeView,
-        builder: (context, state) => BlocProvider(
-          create: (context) =>
-              CategoriesCubit(getIt.get<HomeRepoImp>())..getCategories(),
+        builder: (context, state) => MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  CategoriesCubit(getIt.get<HomeRepoImp>())..getCategories(),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  OrdersCubit(getIt.get<OrdersRepoImp>())..fetchOrders(),
+            ),
+          ],
           child: const HomeView(),
         ),
       ),

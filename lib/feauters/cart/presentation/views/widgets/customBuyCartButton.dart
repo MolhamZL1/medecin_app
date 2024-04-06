@@ -33,35 +33,7 @@ class _CustomBuyCartButtonState extends State<CustomBuyCartButton> {
         return Padding(
             padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
             child: GestureDetector(
-              onTap: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text("Buy Cart"),
-                        content: const Text("Total Price:"),
-                        actions: [
-                          TextButton(
-                            child: const Text(
-                              "Close",
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            onPressed: () {
-                              GoRouter.of(context).pop();
-                            },
-                          ),
-                          TextButton(
-                            child: Text("Buy", style: TextStyle(color: kColor)),
-                            onPressed: () {
-                              BlocProvider.of<BuyCartCubit>(this.context)
-                                  .buyCart();
-                              GoRouter.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    });
-              },
+              onTap: () => confirmationdialog(context),
               child: Container(
                 padding: const EdgeInsets.all(2),
                 decoration: buildDecorationContainer(),
@@ -86,6 +58,35 @@ class _CustomBuyCartButtonState extends State<CustomBuyCartButton> {
             ));
       },
     );
+  }
+
+  Future<dynamic> confirmationdialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Buy Cart"),
+            content: const Text("Total Price:"),
+            actions: [
+              TextButton(
+                child: const Text(
+                  "Close",
+                  style: TextStyle(color: Colors.black),
+                ),
+                onPressed: () {
+                  GoRouter.of(context).pop();
+                },
+              ),
+              TextButton(
+                child: Text("Buy", style: TextStyle(color: kColor)),
+                onPressed: () {
+                  BlocProvider.of<BuyCartCubit>(this.context).buyCart();
+                  GoRouter.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
 
   BoxDecoration buildDecorationContainer() {

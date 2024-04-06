@@ -17,8 +17,8 @@ class CustomCategoriesGridViewBuilder extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         itemCount: categories.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
             childAspectRatio: 1.2,
+            crossAxisCount: 2,
             crossAxisSpacing: 15,
             mainAxisSpacing: 20),
         itemBuilder: (context, index) {

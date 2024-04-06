@@ -6,7 +6,7 @@ import 'package:rosemary/feauters/home/presentation/views/widgets/custom_app_bar
 import 'package:rosemary/feauters/home/presentation/views/widgets/favourite_body.dart';
 import 'package:rosemary/feauters/home/presentation/views/widgets/home_view_body.dart';
 import 'package:rosemary/feauters/home/presentation/views/widgets/notfications_body.dart';
-import 'package:rosemary/feauters/home/presentation/views/widgets/orders_body.dart';
+import 'package:rosemary/feauters/orders/presentation/views/orders_view_body.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -19,7 +19,7 @@ class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
   final views = [
     const HomeViewBody(),
-    const OrdersBody(),
+    const OrdersViewBody(),
     const FavouritesBody(),
     const NotficationsBody()
   ];

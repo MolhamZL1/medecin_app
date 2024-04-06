@@ -26,7 +26,7 @@ class CustomCategoryCard extends StatelessWidget {
                       topLeft: Radius.circular(12),
                       topRight: Radius.circular(12)),
                   child: Image.asset(
-                    getimage(),
+                    getCategoryImage(),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -46,7 +46,7 @@ class CustomCategoryCard extends StatelessWidget {
     );
   }
 
-  getimage() {
+  getCategoryImage() {
     if (category == "Analgesic") {
       return "assets/images/Anti.jpg";
     } else if (category == "Antibiotic") {
